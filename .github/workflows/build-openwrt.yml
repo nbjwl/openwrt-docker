@@ -10,12 +10,13 @@ name: Build OpenWrt
 
 on:
   release:
-    types: published
+    types: 
+      - published
   push:
     branches:
       - master
-    paths:
-      - '.config'
+    # paths:
+    #   - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -26,7 +27,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
@@ -112,3 +113,13 @@ jobs:
       with:
         name: OpenWrt_firmware
         path: ${{ env.FIRMWARE }}
+
+    - name: Docker Hub Login
+      run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PWD }}
+
+    - name: Build Docker Image
+      run: |
+        docker import ${{ env.FIRMWARE }} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
+
+    - name: Push Docker Image To Docker Hub
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta

@@ -70,7 +70,6 @@ jobs:
         chmod +x $DIY_SH
         cd openwrt
         ../$DIY_SH
-        make defconfig
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
@@ -121,7 +120,8 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker import --platform linux/arm ${{ env.FIRMWARE }} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
+        cd openwrt/bin/targets/*/*
+        find . -name '*.tar.gz' -exec docker import {} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta \;
 
     - name: Push Docker Image To Docker Hub
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta

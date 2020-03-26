@@ -120,7 +120,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        cd openwrt/bin/targets/*/*
+        cd ${{ env.FIRMWARE }}
         find . -name '*.tar.gz' -exec docker import {} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta \;
 
     - name: Push Docker Image To Docker Hub

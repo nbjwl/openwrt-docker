@@ -122,7 +122,7 @@ jobs:
     - name: Build Docker Image
       run: |
         cd ${{ env.FIRMWARE }}
-        find . -name '*.tar.gz' -exec docker import {} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:{{ env.TAG }} \;
+        find . -name '*.tar.gz' -exec docker import {} ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:${{ env.TAG }} \;
 
     - name: Push Docker Image To Docker Hub
-      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:{{ env.TAG }}
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:${{ env.TAG }}

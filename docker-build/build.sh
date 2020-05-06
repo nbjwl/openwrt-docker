@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 source env.sh
 
 if [[ ${CLEAN_BUILD} == 'Y' ]]
@@ -11,16 +9,20 @@ then
     --name openwrt-build-env \
     -h P3TERX \
     -p 10022:22 \
+    --env http_proxy=${PROXY} \
+    --env https_proxy=${PROXY} \
     p3terx/openwrt-build-env:latest
 fi
+
+set -e
 
 docker start openwrt-build-env
 
 docker exec openwrt-build-env \
-sudo apt-get update
+sudo -E apt-get update
 
 docker exec openwrt-build-env \
-sudo apt-get install -y rsync
+sudo -E apt-get install -y rsync
 
 docker exec openwrt-build-env \
 mkdir -p src

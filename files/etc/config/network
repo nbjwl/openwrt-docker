@@ -16,6 +16,5 @@ config interface 'lan'
 	option netmask '255.255.255.0'
 	option ip6assign '60'
 	option gateway '192.168.0.1'
-	list dns '192.168.0.1'
 	option broadcast '192.168.0.255'
 

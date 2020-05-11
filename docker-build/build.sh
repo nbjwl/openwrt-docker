@@ -14,12 +14,12 @@ then
     p3terx/openwrt-build-env:latest
 fi
 
-set -e
-
 docker start openwrt-build-env
 
 docker exec openwrt-build-env \
 sudo -E apt-get update
+
+set -e
 
 docker exec openwrt-build-env \
 sudo -E apt-get install -y rsync

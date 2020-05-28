@@ -14,6 +14,5 @@ mkdir package/community
 pushd package/community
 git clone https://github.com/kuoruan/luci-app-kcptun.git
 git clone https://github.com/kuoruan/luci-app-v2ray
-git clone https://github.com/atrandys/openwrt-udp2raw-speeder
-git clone https://github.com/atrandys/luci-udptools
+git clone --branch master https://github.com/vernesong/OpenClash.git
 popd

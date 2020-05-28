@@ -16,32 +16,19 @@ fi
 
 docker start openwrt-build-env
 
-docker exec openwrt-build-env \
-sudo -E apt-get update
-
 set -e
-
-docker exec openwrt-build-env \
-sudo -E apt-get install -y rsync
 
 docker exec openwrt-build-env \
 mkdir -p src
 
-ssh-keygen -f ~/.ssh/known_hosts -R localhost:10022
-
-sshpass -p "user" rsync -av -e "ssh -o StrictHostKeyChecking=no -p 10022" \
---exclude=".github" --exclude=".git" --exclude="docker-build/dist" \
-../ user@localhost:src/
+rm -rf docker-build/dist
+docker cp ../. openwrt-build-env:/home/user/src/
 
 docker exec openwrt-build-env \
 src/docker-build/compile.sh
 
-rm -rf dist
 mkdir -p dist
-
-sshpass -p "user" scp -r -o StrictHostKeyChecking=no -P 10022 \
-user@localhost:/home/user/openwrt/bin/targets/* \
-dist/
+docker cp openwrt-build-env:/home/user/openwrt/bin/targets/. dist
 
 cd dist/*/*
 find . -name '*.tar.gz' -exec docker import {} ${DOCKER_USER}/openwrt:beta \;

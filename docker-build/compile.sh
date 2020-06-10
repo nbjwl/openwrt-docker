@@ -11,7 +11,7 @@ cd openwrt
 ./scripts/feeds install -a
 cd ..
 
-[ -e src/files ] && cp -rf src/files openwrt/files
+[ -e src/files ] && cp -rf src/files/. openwrt/files
 [ -e src/$CONFIG_FILE ] && cp -f src/$CONFIG_FILE openwrt/.config
 chmod +x src/$DIY_SH
 cd openwrt

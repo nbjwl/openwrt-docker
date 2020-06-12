@@ -21,7 +21,10 @@ set -e
 docker exec openwrt-build-env \
 mkdir -p src
 
-rm -rf docker-build/dist
+rm -rf dist
+
+docker exec openwrt-build-env \
+rm -rf /home/user/src
 docker cp ../. openwrt-build-env:/home/user/src/
 
 docker exec openwrt-build-env \
@@ -31,4 +34,4 @@ mkdir -p dist
 docker cp openwrt-build-env:/home/user/openwrt/bin/targets/. dist
 
 cd dist/*/*
-find . -name '*.tar.gz' -exec docker import {} ${DOCKER_USER}/openwrt:beta \;
+find . -name '*.tar.gz' -exec docker import {} ${DOCKER_USER}/openwrt:19.07 \;

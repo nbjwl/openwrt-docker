@@ -13,10 +13,8 @@ CONFIG_LUCI_CSSTIDY=n
 CONFIG_PACKAGE_luci-theme-argon=y
 
 CONFIG_PACKAGE_luci-app-v2ray=y
-CONFIG_PACKAGE_v2ray-core=y
 
 CONFIG_PACKAGE_luci-app-kcptun=y
-CONFIG_PACKAGE_kcptun-client=y
 
 CONFIG_PACKAGE_luci-app-openclash=y
 

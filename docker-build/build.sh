@@ -2,7 +2,7 @@
 
 source env.sh
 
-if [[ ${CLEAN_BUILD} == 'Y' ]]
+if [[ $1 == 'Y' ]]
 then
   docker rm -f openwrt-build-env
   docker run -itd \

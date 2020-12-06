@@ -16,7 +16,7 @@ on:
     branches:
       - master
     paths:
-      - '.config-19.07'
+      - '.config-master'
 
   schedule:
     - cron: 0 8 * * 5

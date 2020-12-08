@@ -17,6 +17,7 @@ on:
       - master
     paths:
       - '.config-19.07'
+      - 'diy-19.07.sh'
 
   schedule:
     - cron: 0 8 * * 5
@@ -27,7 +28,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-19.07
   CONFIG_FILE: .config-19.07
-  DIY_SH: diy.sh
+  DIY_SH: diy_19.07.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true

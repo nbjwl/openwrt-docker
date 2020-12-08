@@ -16,4 +16,4 @@ wget https://github.com/v2fly/v2ray-core/releases/download/v4.32.1/v2ray-linux-a
 tar -xzvf /tmp/kcptun.tar.gz -C files/usr/bin
 mv files/usr/bin/server_linux_arm64 files/usr/bin/kcptun_server
 mv files/usr/bin/client_linux_arm64 files/usr/bin/kcptun_client
-unzip -o /tmp/v2ray.zip -d files/usr/bin 
+unzip -o /tmp/v2ray.zip -d files/usr/bin

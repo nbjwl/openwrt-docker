@@ -14,18 +14,20 @@ then
     p3terx/openwrt-build-env:latest
 fi
 
-docker start openwrt-build-env
-
+docker restart openwrt-build-env
 set -e
 
 docker exec openwrt-build-env \
 mkdir -p src
 
 rm -rf dist
-
 docker exec openwrt-build-env \
 rm -rf /home/user/src
+
 docker cp ../. openwrt-build-env:/home/user/src/
+
+docker exec openwrt-build-env \
+sudo chown -R user:user src 
 
 docker exec openwrt-build-env \
 src/docker-build/compile.sh
@@ -34,4 +36,4 @@ mkdir -p dist
 docker cp openwrt-build-env:/home/user/openwrt/bin/targets/. dist
 
 cd dist/*/*
-find . -name '*.tar.gz' -exec docker import {} ${DOCKER_USER}/openwrt:19.07 \;
+find . -name '*.tar.gz' -exec docker import {} ${DOCKER_USER}/openwrt:${VERSION} \;

@@ -14,6 +14,6 @@ wget https://github.com/xtaci/kcptun/releases/download/v20201010/kcptun-linux-ar
 wget https://github.com/v2fly/v2ray-core/releases/download/v4.32.1/v2ray-linux-arm64-v8a.zip -O /tmp/v2ray.zip
 
 tar -xzvf /tmp/kcptun.tar.gz -C files/usr/bin
-mv files/usr/bin/server_linux_arm64 files/usr/bin/kcptun_server
-mv files/usr/bin/client_linux_arm64 files/usr/bin/kcptun_client
+mv files/usr/bin/server_linux_arm64 files/usr/bin/kcptun-server
+mv files/usr/bin/client_linux_arm64 files/usr/bin/kcptun-client
 unzip -o /tmp/v2ray.zip -d files/usr/bin

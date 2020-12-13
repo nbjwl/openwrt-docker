@@ -7,6 +7,7 @@ source src/docker-build/env.sh
 [ ! -d "openwrt" ] && git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
 cd openwrt 
+sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 cd ..

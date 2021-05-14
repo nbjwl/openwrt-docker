@@ -41,5 +41,3 @@ CONFIG_PACKAGE_wireguard=y
 
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_openvpn-openssl=n
-
-
